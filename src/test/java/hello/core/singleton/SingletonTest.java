@@ -7,6 +7,8 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import static org.assertj.core.api.Assertions.*;
+
 public class SingletonTest {
 
     @Test
@@ -21,7 +23,17 @@ public class SingletonTest {
         System.out.println(memberService);
         System.out.println(memberService1);
 
-        Assertions.assertThat(memberService).isNotSameAs(memberService1);
+        assertThat(memberService).isNotSameAs(memberService1);
+    }
+
+    @Test
+    @DisplayName("싱글톤 패턴을 적용한 객체 사용")
+    void singletonServiceTest() {
+        SingletonService singletonService1 = SingletonService.getInstance();
+        SingletonService singletonService2 = SingletonService.getInstance();
+
+        assertThat(singletonService1).isEqualTo(singletonService2);
+
     }
 
 }
